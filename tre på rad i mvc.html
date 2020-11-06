@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Tre på rad</title>
+    <style type="text/css">
+        div {
+            user-select: none;
+        }
+
+            div.cell {
+                background-color: lightgray;
+                width: 100px;
+                height: 100px;
+                float: left;
+                margin: 2px;
+                font-size: 500%;
+                font-family: helvetica;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            div.first {
+                clear: left;
+            }
+
+            div.coloro {
+                color: blue;
+            }
+
+            div.colorx {
+                color: green;
+            }
+    </style>
+</head>
+<body>
+    <div id="board"></div>
+
+    <script type="text/javascript">
+        // hjelpevariabler for view og controller
+        let boardDiv = document.getElementById('board');
+
+        // model
+        let board = ['', '', '', '', '', '', '', '', ''];
+        let winner = false;
+        
+
+        // view
+        show();
+        function show() {
+            var winnerText = winner ? `Winner is ${winner}<button onclick="reset()">Reset</button>` : '';
+            let html = '';
+            html += winnerText;
+            for (let i = 0; i < 9; i++) {
+                let first = i % 3 == 0 ? 'first' : '';
+                html += `<div onclick="setX(${i})" class="cell color${board[i]} ${first}">${board[i]}</div>`;
+            }
+            boardDiv.innerHTML = html;
+        }   
+
+        // controller
+        function setX(index) {
+            if (winner == false) {
+                console.log(index);
+            if (board[index] === '') {
+                board[index] = 'x';
+                skjekkAlleMuligheter();
+                setO();
+            }
+            show();
+            }
+        }
+            
+
+        function setO() {
+            if (winner == false) {
+                let blankIndexes = Array.from(board.keys()).filter(i => board[i] === '');
+            if (blankIndexes.length === 0) return;
+            let random = Math.floor(Math.random() * blankIndexes.length);
+            let blankIndex = blankIndexes[random];
+            board[blankIndex] = 'o';
+            skjekkAlleMuligheter();
+            show();
+            }
+        }
+
+        function reset() {
+            board = ['', '', '', '', '', '', '', '', ''];
+            show();
+            winner = false;
+        }
+          
+
+        function skjekkAlleMuligheter () {
+                skjekkEnMulighet(0,1,2);
+                skjekkEnMulighet(3,4,5);
+                skjekkEnMulighet(6,7,8);
+                skjekkEnMulighet(0,3,6);
+                skjekkEnMulighet(1,4,7);
+                skjekkEnMulighet(2,5,8);
+                skjekkEnMulighet(0,4,8);
+                skjekkEnMulighet(2,4,6);
+            }
+
+
+
+            function skjekkEnMulighet(indeks1, indeks2, indeks3) {
+                if ((board[indeks1] == 'x' || board[indeks1] == 'o') && board[indeks1] == board[indeks2] && board[indeks1] == board[indeks3]) {
+                    
+                    winner = board[indeks1];
+                    show();
+                }
+            }
+    </script>
+</body>
+</html>

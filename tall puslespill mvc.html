@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            .inner {
+                background-color: aqua;
+                width: 50px;
+                height: 50px;
+                position: relative;
+            }
+            
+        </style>
+    </head>
+    <body> 
+        <div id="board"></div>
+        
+
+        
+        <script>
+            let boardDiv = document.getElementById('board');
+
+// model
+let board = ['', '', '', '', '', '', '', '', ''];
+let winner = false;
+
+
+// view
+show();
+function show() {
+    var winnerText = winner ? `Winner is ${winner}<button onclick="reset()">Reset</button>` : '';
+    let html = '';
+    html += winnerText;
+    for (let i = 0; i < 9; i++) {
+        let first = i % 3 == 0 ? 'first' : '';
+        html += `<div onclick="setX(${i})" class="cell color${board[i]} ${first}">${board[i]}</div>`;
+    }
+    boardDiv.innerHTML = html;
+}   
+
+
+        </script>
+    </body>
+</html>
