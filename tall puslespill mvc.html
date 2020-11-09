@@ -8,11 +8,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
         <style>
-            .inner {
-                background-color: aqua;
-                width: 50px;
-                height: 50px;
-                position: relative;
+            div.cell {
+                background-color: lightgray;
+                width: 100px;
+                height: 100px;
+                float: left;
+                margin: 2px;
+                font-size: 500%;
+                font-family: helvetica;
+                text-align: center;
+                vertical-align: middle;
+            }
+            div.first {
+                clear: left;
             }
             
         </style>
@@ -33,12 +41,14 @@ let winner = false;
 // view
 show();
 function show() {
-    var winnerText = winner ? `Winner is ${winner}<button onclick="reset()">Reset</button>` : '';
     let html = '';
-    html += winnerText;
-    for (let i = 0; i < 9; i++) {
-        let first = i % 3 == 0 ? 'first' : '';
-        html += `<div onclick="setX(${i})" class="cell color${board[i]} ${first}">${board[i]}</div>`;
+    for (let rad = 0; rad <= 3; rad++) {
+        
+        
+        for (let kolonne = 0; kolonne <= 3; kolonne++) {
+            let first = kolonne % 3 == 0 && rad != 1 ? 'first' : '';
+            html += `<div onclick="trykk(this, r${rad}k${kolonne})" class="cell ${first}"></div>`;
+        }
     }
     boardDiv.innerHTML = html;
 }   

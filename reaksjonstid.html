@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+        .lightOn {
+            background-color: yellow;
+            border: solid black 2px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            float: left;
+            text-align: center;
+
+        }
+
+        .lamp {
+            background-color: purple;
+            border: solid black 2px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            float: left;
+        }
+
+        .first {
+            clear: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script>
+
+
+        //model
+        var selectedLampIndex = selectedLampIndex = Math.floor(Math.random() * 25) + 1;
+        var startingTime = '';
+        var finishingTime = '';
+        var spentMilliseconds = '';
+        var spentSeconds = '';
+        //div variabel
+        var num1 = '';
+        var num2 = '';
+        var num3 = '';
+        var num4 = '';
+        var num5 = '';
+        var num6 = '';
+        var num7 = '';
+        var num8 = '';
+        var num9 = '';
+        var num10 = '';
+        var num11 = '';
+        var num12 = '';
+        var num13 = '';
+        var num14 = '';
+        var num15 = '';
+        var num16 = '';
+        var num17 = '';
+        var num18 = '';
+        var num19 = '';
+        var num20 = '';
+        var num21 = '';
+        var num22 = '';
+        var num23 = '';
+        var num24 = '';
+        var num25 = '';
+
+        //view
+        updateView();
+        function updateView() {
+            startTime();
+
+            // var lightOn = selectedLampIndex ? `<div class="lightOn" onclick="finishTime(); calculateTime();"></div>
+            // `: '';
+            var spentTime = spentMilliseconds == false ? '' : spentMilliseconds;
+            var spentTime2 = spentSeconds == false ? '' : spentSeconds;
+            document.getElementById('app').innerHTML = `
+        <div id="1" class="lamp">${num1}</div>
+        <div id="2" class="lamp">${num2}</div>
+        <div id="3" class="lamp">${num3}</div>
+        <div id="4" class="lamp">${num4}</div>
+        <div id="5" class="lamp">${num5}</div>
+
+        <div id="6" class="lamp first">${num6}</div>
+        <div id="7" class="lamp">${num7}</div>
+        <div id="8" class="lamp">${num8}</div>
+        <div id="9" class="lamp">${num9}</div>
+        <div id="10" class="lamp">${num10}</div>
+
+        <div id="11" class="lamp first">${num11}</div>
+        <div id="12" class="lamp">${num12}</div>
+        <div id="13" class="lamp">${num13}</div>
+        <div id="14" class="lamp">${num14}</div>
+        <div id="15" class="lamp">${num15}</div>
+
+        <div id="16" class="lamp first">${num16}</div>
+        <div id="17" class="lamp">${num17}</div>
+        <div id="18" class="lamp">${num18}</div>
+        <div id="19" class="lamp">${num19}</div>
+        <div id="20" class="lamp">${num20}</div>
+
+        <div id="21" class="lamp first">${num21}</div>
+        <div id="22" class="lamp">${num22}</div>
+        <div id="23" class="lamp">${num23}</div>
+        <div id="24" class="lamp">${num24}</div>
+        <div id="25" class="lamp">${num25}</div>
+        <div>${spentTime || ''}</div>
+        <div>${spentTime2 || ''}</div>
+        <button onclick="reset()">Reset</button>
+        `;
+        }
+
+        //controller
+        
+        function startTime() {
+            startingTime = new Date().getTime();
+        }
+
+        function finishTime() {
+            finishingTime = new Date().getTime();   
+        }
+        function calculateTime() {
+            spentMilliseconds = Math.floor(finishingTime - startingTime);
+            spentSeconds = spentMilliseconds / 1000;
+            updateView();
+        }
+
+        function reset () {
+            location.reload();
+        }
+
+        selectVariable(selectedLampIndex);
+        function selectVariable(selectedLampIndex) {
+            var ligthOn = `<div class="lightOn" onclick="finishTime(); calculateTime();"></div>`
+            switch (selectedLampIndex) {
+            case 1:
+                num1 = ligthOn;
+                break;
+            case 2:
+                num2 = ligthOn;
+                break;
+            case 3:
+                num3 = ligthOn;
+                break;
+            case 4:
+                num4 = ligthOn;
+                break;
+            case 5:
+                num5 = ligthOn;
+                break;
+            case 6:
+                num6 = ligthOn;
+                break;
+            case 7:
+                num7 = ligthOn;
+                break;
+            case 8:
+                num8 = ligthOn;
+                break;
+            case 9:
+                num9 = ligthOn;
+                break;
+            case 10:
+                num10 = ligthOn;
+                break;
+            case 11:
+                num11 = ligthOn;
+                break;    
+            case 12:
+                num12 = ligthOn;
+                break;
+            case 13:
+                num13 = ligthOn;
+                break;
+            case 14:
+                num14 = ligthOn;
+                break;
+            case 15:
+                num15 = ligthOn;
+                break;
+            case 16:
+                num16 = ligthOn;
+                break;
+            case 17:
+                num17 = ligthOn;
+                break;
+            case 18:
+                num18 = ligthOn;
+                break;
+            case 19:
+                num19 = ligthOn;
+                break;
+            case 20:
+                num20 = ligthOn;
+                break;
+            case 21:
+                num21 = ligthOn;
+                break;
+            case 22:
+                num22 = ligthOn;
+                break;
+            case 23:
+                num23 = ligthOn;
+                break;
+            case 24:
+                num24 = ligthOn;
+                break;
+            case 25:
+                num25 = ligthOn;
+                break;
+
+            }
+            updateView();
+        }
+
+    </script>
+</body>
+
+</html>

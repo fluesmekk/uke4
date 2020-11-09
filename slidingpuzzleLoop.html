@@ -1,0 +1,53 @@
+<style>
+    div.cell {
+        background-color: lightgray;
+        width: 100px;
+        height: 100px;
+        float: left;
+        margin: 2px;
+        font-size: 200%;
+        font-family: helvetica;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    div.first {
+        clear: left;
+    }
+</style>
+<body>
+    <div id='board'></div>
+</body>
+<script>
+
+let boardDiv = document.getElementById('board');
+show();
+function show () {
+    let html = '';
+    
+    for (let i = 1; i <= 3; i++) {
+        for (let j = 1; j <= 3; j++) {
+            let first = j % 3 == 1 ? 'first' : '';
+            let middle = (i === 2 && j === 2) ? '' : `r${i}k${j}`;
+            html += `<div id="r${i}k${j}" class="cell ${first}" onclick="trykk(this, 'r${i - 1}k${j}', 'r${i}k${j - 1}', 'r${i}k${j + 1}', 'r${i + 1}k${j}')">${middle}</div>`
+        }
+    }
+    boardDiv.innerHTML = html;
+}
+
+function trykk(tagElement, alt1, alt2, alt3, alt4) {
+    checkOneAlternative (alt1, tagElement)
+    || checkOneAlternative (alt2, tagElement)
+    || checkOneAlternative (alt3, tagElement)
+    || checkOneAlternative (alt4, tagElement);
+}
+
+function checkOneAlternative(alt, tagElement) {
+        var divOfAlternative = document.getElementById(alt);
+        if (!divOfAlternative || divOfAlternative.innerHTML != '') return false;
+        divOfAlternative.innerHTML = tagElement.innerHTML;
+        tagElement.innerHTML = '';
+    }
+
+
+</script>
